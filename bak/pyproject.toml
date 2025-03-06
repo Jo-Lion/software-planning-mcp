@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "software-planning-mcp"
+version = "0.1.0"
+description = "软件规划MCP服务器，提供软件开发规划工具"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "MCP开发团队", email = "example@example.com"}
+]
+dependencies = [
+    "mcp>=0.1.0",
+    "uvicorn>=0.15.0",
+    "httpx-sse>=0.2.0",
+]
+
+[project.scripts]
+software-planning-mcp = "software_planning_mcp.server:main"
+
+[project.urls]
+"Homepage" = "https://github.com/yourusername/software-planning-mcp"
+"Bug Tracker" = "https://github.com/yourusername/software-planning-mcp/issues"
+
+[tool.setuptools]
+packages = ["software_planning_mcp"] 
