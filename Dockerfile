@@ -15,5 +15,6 @@ EXPOSE 8000
 # 设置环境变量
 ENV PYTHONUNBUFFERED=1
 
-# 启动服务
-CMD ["python", "server.py", "--transport", "http", "--host", "0.0.0.0", "--port", "8000"] 
+# 注意：实际的启动命令将由smithery.yaml中的commandFunction定义
+# 这里的CMD是为了在非Smithery环境中使用
+CMD ["python", "server.py", "--transport", "stdio"] 
