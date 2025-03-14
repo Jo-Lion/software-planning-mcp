@@ -161,7 +161,7 @@ class SoftwarePlanningServer:
         
         return json.dumps(todos_list, ensure_ascii=False, indent=2)
     
-    async def update_todo_status_tool(self, todo_id: str, is_complete: bool) -> str:
+    async def update_todo_status_tool(self, todo_id: Any, is_complete: bool) -> str:
         """更新待办事项的完成状态"""
         if not self.current_goal:
             raise McpError(
@@ -169,7 +169,10 @@ class SoftwarePlanningServer:
                 "没有活动目标。请先开始一个新的规划会话。"
             )
         
-        updated_todo = await storage.update_todo_status(self.current_goal.id, todo_id, is_complete)
+        # 确保todo_id是字符串类型
+        todo_id_str = str(todo_id)
+        
+        updated_todo = await storage.update_todo_status(self.current_goal.id, todo_id_str, is_complete)
         
         return json.dumps(updated_todo.__dict__, ensure_ascii=False, indent=2)
     
