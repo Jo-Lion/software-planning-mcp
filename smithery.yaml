@@ -1,0 +1,33 @@
+build:
+  type: docker
+  dockerfile: Dockerfile
+  context: .
+
+deploy:
+  # 部署配置
+  replicas: 1
+  # 资源配置
+  resources:
+    cpu: 0.5
+    memory: 512Mi
+  # 端口配置
+  ports:
+    - port: 8000
+      targetPort: 8000
+      protocol: TCP
+      name: http
+
+# 健康检查
+health:
+  httpGet:
+    path: /health
+    port: 8000
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+# 环境变量
+environment:
+  - name: MCP_DEBUG
+    value: "false"
+  - name: MCP_LOG_LEVEL
+    value: "info" 

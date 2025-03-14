@@ -52,6 +52,12 @@ class SoftwarePlanningServer:
         self.mcp_server.add_tool(self.update_todo_status_tool, name="update_todo_status", 
                                 description="更新待办事项的完成状态")
         
+        # 添加健康检查端点
+        if hasattr(self.mcp_server, 'app'):
+            @self.mcp_server.app.get("/health")
+            async def health_check():
+                return {"status": "healthy"}
+        
         return self.mcp_server
     
     # 资源处理函数
